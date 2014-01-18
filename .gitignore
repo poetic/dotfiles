@@ -5,3 +5,4 @@ vim/bundle
 # Dont ignore
 !vim/bundle/vundle
 
+.git-bitbucket/
