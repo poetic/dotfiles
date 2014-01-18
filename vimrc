@@ -492,6 +492,7 @@ augroup END
     " }}}
     " Ack {{{
         nmap <leader>a :Ack
+        let g:ackprg = 'ag --nogroup --nocolor --column'
     " }}}
     " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-"] "]
