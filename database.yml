@@ -1,0 +1,28 @@
+# this is used to be copied into a rails config directory after cloning
+# a project since the database.yml is likely not in the repo. We have it using
+# port 15432 since thats the default port for pg that boxen uses. If you are
+# using a basic pg installation it will probably be on 5432 instead
+#
+# you'll also need to swap out `name` in this file for the project you are working
+# on
+defaults: &defaults
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  pool: 5
+  port: 15432
+
+development:
+  <<: *defaults
+  database: name_dev
+
+test: &test
+  <<: *defaults
+  database: name_test
+
+production:
+  <<: *defaults
+  database: name
+
+cucumber:
+  <<: *test

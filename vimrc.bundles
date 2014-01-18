@@ -1,0 +1,77 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" tpope yay!:
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-endwise'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+
+" Rails Testing
+Bundle 'tpope/vim-cucumber'
+Bundle 'thoughtbot/vim-rspec'
+
+" Tmux Rails Testing
+Bundle 'jgdavey/vim-turbux'
+Bundle 'benmills/vimux'
+
+Bundle 'christoomey/vim-tmux-navigator'
+
+Bundle 'junegunn/seoul256.vim'
+Bundle 'jakecraige/vim-colors'
+Bundle 'thingsinjars/Cobalt.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'sjl/badwolf'
+Bundle 'vim-scripts/xoria256.vim'
+Bundle 'dhruvasagar/vim-railscasts-theme'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'kien/ctrlp.vim'
+Bundle 'godlygeek/tabular'
+" webapi required for gists
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'othree/javascript-libraries-syntax.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'spf13/PIV'
+
+" for snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'garbas/vim-snipmate'
+Bundle 'ervandew/supertab'
+Bundle 'honza/vim-snippets'
+Bundle 'poetic/vim-snippets-poetic'
+
+Bundle 'majutsushi/tagbar'
+Bundle 'Raimondi/delimitMate'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle "pangloss/vim-javascript"
+Bundle 'duff/vim-scratch'
+Bundle 'rodjek/vim-puppet'
+Bundle 'mustache/vim-mode'
+
+" Dash
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
+filetype on
