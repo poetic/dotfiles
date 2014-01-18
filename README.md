@@ -1,6 +1,11 @@
 Setup
 ==========
-Simply symllink all the root files and folders here into your home directory.
++  symllink all the root files and folders here into your home directory.
++  cd into this repos directory and run
+   +  `git submodule init`
+   +  `git submodule update`
+   to get powerline setup
+
 After that you will need to do whats listed in the "Vim Setup" section to have
 the vim plugins properly installed
 
