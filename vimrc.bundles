@@ -70,6 +70,10 @@ Bundle 'mustache/vim-mode'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 
+Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
+
+
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
 endif

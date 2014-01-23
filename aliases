@@ -81,6 +81,7 @@ alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort
 # Don't correct these commands!
 # -------------------------------------------------------------------
 alias spring='nocorrect spring'
+alias ag='nocorrect ag'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers

@@ -1,7 +1,7 @@
 "Jake Craige & Matthew Hager
 
 " Setup {{{
-    set rtp+=~/.poetic_dotfiles/powerline/powerline/bindings/vim/
+    "set rtp+=~/.poetic_dotfiles/powerline/powerline/bindings/vim/
     if filereadable(expand("~/.vimrc.bundles"))
       source ~/.vimrc.bundles
     endif
@@ -496,11 +496,25 @@ augroup END
     " }}}
     " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-"] "]
+        let g:syntastic_quiet_warnings = 1
     " }}}
     " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
     " }}}
-    
+    " vim-bufferline {{{
+      let g:bufferline_echo = 0
+      nnoremap <Leader>1 :1b<CR>
+      nnoremap <Leader>2 :2b<CR>
+      nnoremap <Leader>3 :3b<CR>
+      nnoremap <Leader>4 :4b<CR>
+      nnoremap <Leader>5 :5b<CR>
+      nnoremap <Leader>6 :6b<CR>
+      nnoremap <Leader>7 :7b<CR>
+      nnoremap <Leader>8 :8b<CR>
+      nnoremap <Leader>9 :9b<CR>
+      nnoremap <Leader>0 :10b<CR>
+    " }}}
+
 " }}}
 " Uncategorized {{{
 
