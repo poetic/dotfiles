@@ -64,7 +64,6 @@
       set cursorcolumn
       set ttyfast               " fast scrolling...
       set list
-      set number                " Adds line number on cursor line
       set relativenumber
       set foldenable             " enable code folding
       set virtualedit=onemore    " Allow cursor beyondlast character
