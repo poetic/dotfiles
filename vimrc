@@ -64,6 +64,7 @@
       set cursorcolumn
       set ttyfast               " fast scrolling...
       set list
+      set number                " Adds line number on cursor line
       set relativenumber
       set foldenable             " enable code folding
       set virtualedit=onemore    " Allow cursor beyondlast character
@@ -208,9 +209,8 @@
       endif
   endfunction
   map <Leader>n :call RenameFile()<cr>
-  " 
-  
-" Line Return On File Open
+
+" Line Return On File Open{{{
 
 " Make sure Vim returns to the same line when you reopen a file.
 " Thanks, Amit
@@ -343,7 +343,6 @@ augroup END
 
 " 
 " Plugins 
-
     " NERDTree 
         map <C-e> :NERDTreeToggle<CR>
         let NERDTreeHighlightCursorline = 1
@@ -357,13 +356,12 @@ augroup END
         let NERDChristmasTree = 1
         let NERDTreeChDirMode = 2
         let NERDTreeMapJumpFirstChild = 'gK'
-    " 
-    " Sparkup 
-    
+    " Sparkup {{{
+
       let g:sparkupExecuteMapping = '<leader>h'
-      
-    " 
-    " Tabular 
+
+    " }}}
+    " Tabular {{{
       nmap <Leader>a= :Tabularize /=<CR>
       vmap <Leader>a= :Tabularize /=<CR>
       nmap <Leader>a: :Tabularize /:\zs<CR>
@@ -417,7 +415,7 @@ augroup END
             \ ]
         \ }
 
-        " Posix regular expressions for matching interesting items. Since this will 
+        " Posix regular expressions for matching interesting items. Since this will
         " be passed as an environment variable, no whitespace can exist in the options
         " so [:space:] is used instead of normal whitespaces.
         " Adapted from: https://gist.github.com/2901844
@@ -463,7 +461,7 @@ augroup END
           \   "command": "feature",
           \   "template": "require 'spec_helper'\n\nfeature '%h' do\n\nend",
           \ }}
- 
+
         let g:rails_gem_projections = {
               \ "active_model_serializers": {
               \   "app/serializers/*_serializer.rb": {
@@ -518,7 +516,7 @@ augroup END
 " 
 " Uncategorized 
 
-  " Panic Button, haha.. 
+  " Panic Button, haha..
   nnoremap <f9> mzggg?G`z
 
   " Local config
