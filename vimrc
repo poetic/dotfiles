@@ -1,17 +1,17 @@
 "Jake Craige & Matthew Hager
 
-" Setup {{{
+" Setup 
     "set rtp+=~/.poetic_dotfiles/powerline/powerline/bindings/vim/
     if filereadable(expand("~/.vimrc.bundles"))
       source ~/.vimrc.bundles
     endif
 
     filetype plugin indent on
-" }}}
-" Language Specific {{{
+" 
+" Language Specific 
     " keep you honest and without tabs
     autocmd BufWritePre * :retab
-    " Javascript {{{
+    " Javascript 
         autocmd BufReadPre *.coffee let b:javascript_lib_use_angularjs = 1
 
         augroup ft_javascript
@@ -20,19 +20,19 @@
         augroup END
         " Compile coffee files automatically on sav - add | redraw! for terminal
           "au BufWritePost *.coffee silent make!
-    " }}}
-    " Rails {{{
+    " 
+    " Rails 
         map <Leader>rm :Rmodel<cr>
         map <Leader>rc :Rcontroller<cr>
         map <Leader>rv :Rview<cr>
-    " }}}
-    " Ruby {{{
+    " 
+    " Ruby 
         augroup ft_ruby
           au!
           au Filetype ruby setlocal foldmethod=syntax
         augroup END
-    " }}}
-    " Vim {{{
+    " 
+    " Vim 
 
     augroup ft_vim
         au!
@@ -42,11 +42,11 @@
         au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
     augroup END
 
-    " }}}
-" }}}
-" General make life easy settings {{{
+    " 
+" 
+" General make life easy settings 
       let mapleader = ","
-      "set clipboard=unnamed      " Makes tmux c/p work
+      set clipboard=unnamed      " Makes tmux c/p work
       set noesckeys
       set mouse=a
       set mousehide
@@ -87,8 +87,8 @@
       map Q <nop>
 
 
-" }}}
-" Make Life Easy Bindings {{{
+" 
+" Make Life Easy Bindings 
 
       " S in normal mode to split line, sister to J
       nnoremap S i<cr><esc><right>
@@ -114,8 +114,8 @@
       " 0 now goes to first char in line instead of blank"
         nnoremap 0 0^
 
-" }}}
-" Folding {{{
+" 
+" Folding 
 
     " Space to toggle folds.
     nnoremap <Space> za
@@ -125,7 +125,7 @@
     " cursor happens to be.
     nnoremap zO zCzO
 
-    function! MyFoldText() " {{{
+    function! MyFoldText() " 
         let line = getline(v:foldstart)
 
         let nucolwidth = &fdc + &number * &numberwidth
@@ -139,11 +139,11 @@
         let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
         let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
         return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-    endfunction " }}}
+    endfunction " 
     set foldtext=MyFoldText()
 
-" }}}
-" Colorscheme, Gui, Font  {{{
+" 
+" Colorscheme, Gui, Font  
 
     "Status line with fugitive git integration
     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -162,7 +162,7 @@
       colorscheme railscasts
     endif
 
-    " Font , Text, Tabs {{{
+    " Font , Text, Tabs 
 
         " Auto format comment blocks
         set comments=sl:/*,mb:*,elx:*/
@@ -179,16 +179,16 @@
           set formatoptions=qrn1
           set colorcolumn=+1
 
-    " }}}
+    " 
 
-" }}}
-" Quick Edit Common Files{{{
+" 
+" Quick Edit Common Files
 
     nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc.local<cr>
     nnoremap <leader>ez <C-w><C-v><C-l>:e ~/.zshrc.local<cr>
 
-"}}}
-" File Editing {{{
+
+" File Editing 
 
   " Edit another file in the same directory as the current file
   " uses expression to extract path from current file's path
@@ -197,7 +197,7 @@
     map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
     map <leader><tab> :Scratch<CR>
 
-  " RENAME CURRENT FILE (thanks Gary Bernhardt) {{{
+  " RENAME CURRENT FILE (thanks Gary Bernhardt) 
   function! RenameFile()
       let old_name = expand('%')
       let new_name = input('New file name: ', expand('%'), 'file')
@@ -208,9 +208,9 @@
       endif
   endfunction
   map <Leader>n :call RenameFile()<cr>
-  " }}}
+  " 
   
-" Line Return On File Open{{{
+" Line Return On File Open
 
 " Make sure Vim returns to the same line when you reopen a file.
 " Thanks, Amit
@@ -222,9 +222,9 @@ augroup line_return
         \ endif
 augroup END
 
-" }}}
-" }}}
-" Navigation {{{
+" 
+" 
+" Navigation 
 
   " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
@@ -261,8 +261,8 @@ augroup END
         execute "set <xLeft>=\e[1;*D"
     endif
 
-" }}}
-" Searching {{{
+" 
+" Searching 
 
       "Fix broken searching by enabling regular regex I think?
       nnoremap / /\v
@@ -293,7 +293,7 @@ augroup END
       " Don't move on *
       nnoremap * *<c-o>
 
-      " Visual Mode */# from Scrooloose {{{
+      " Visual Mode */# from Scrooloose 
       " Lets you use * in visual mode
 
       function! s:VSetSearch()
@@ -306,22 +306,22 @@ augroup END
       vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
       vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
-      " }}}
-" }}}
-" Git Setup {{{
+      " 
+" 
+" Git Setup 
 
     map <Leader>gac :Gcommit -m -a ""<LEFT>
     map <Leader>gc :Gcommit -m ""<LEFT>
     map <Leader>gs :Gstatus<CR>
     map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 
-" }}}
-" duplicate selected content {{{
+" 
+" duplicate selected content 
 
   map <Leader>d y'>p
 
-" }}}
-" Backups {{{
+" 
+" Backups 
 
   set backup                        " enable backups
   set noswapfile                    " it's 2013, Vim.
@@ -341,10 +341,10 @@ augroup END
       call mkdir(expand(&directory), "p")
   endif
 
-" }}}
-" Plugins {{{
+" 
+" Plugins 
 
-    " NERDTree {{{
+    " NERDTree 
         map <C-e> :NERDTreeToggle<CR>
         let NERDTreeHighlightCursorline = 1
         let NERDTreeIgnore = ['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
@@ -357,13 +357,13 @@ augroup END
         let NERDChristmasTree = 1
         let NERDTreeChDirMode = 2
         let NERDTreeMapJumpFirstChild = 'gK'
-    " }}}
-    " Sparkup {{{
+    " 
+    " Sparkup 
     
       let g:sparkupExecuteMapping = '<leader>h'
       
-    " }}}
-    " Tabular {{{
+    " 
+    " Tabular 
       nmap <Leader>a= :Tabularize /=<CR>
       vmap <Leader>a= :Tabularize /=<CR>
       nmap <Leader>a: :Tabularize /:\zs<CR>
@@ -372,8 +372,8 @@ augroup END
       vmap <Leader>a> :Tabularize /=><CR>
       nmap <Leader>a\ :Tabularize /\|<CR>
       vmap <Leader>a\ :Tabularize /\|<CR>
-    " }}}
-    " TagBar {{{
+    " 
+    " TagBar 
         nmap <leader>tt :TagbarToggle<CR>
         let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
         let g:tagbar_type_markdown = {
@@ -444,16 +444,16 @@ augroup END
           \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
 
         let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
-    " }}}
-    " Turbux {{{
+    " 
+    " Turbux 
         " this line needed if not using zsh which auto does bundle exec
         "let g:turbux_command_prefix = 'bundle exec'
         let g:no_turbux_mappings = 1
         map <leader>m <Plug>SendTestToTmux
         map <leader>M <Plug>SendFocusedTestToTmux
         let g:turbux_command_prefix = 'spring' " default: (empty)
-    " }}}
-    " Rails.vim {{{
+    " 
+    " Rails.vim 
         " Add support for cucumber, activemodelserializers, and decorators
         let g:rails_projections = {
           \ "config/projections.json": {
@@ -489,19 +489,19 @@ augroup END
               \     "template": "FactoryGirl.define do\nend"
               \   }
               \ }}
-    " }}}
-    " Ack {{{
+    " 
+    " Ack 
         nmap <leader>a :Ack
         let g:ackprg = 'ag --nogroup --nocolor --column'
-    " }}}
-    " Syntastic {{{
+    " 
+    " Syntastic 
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-"] "]
-        let g:syntastic_quiet_warnings = 1
-    " }}}
-    " Mustache/Handlebars {{{
+        let g:syntastic_quiet_messages = {'level': 'warnings'}
+    " 
+    " Mustache/Handlebars 
       let g:mustache_abbreviations = 1
-    " }}}
-    " vim-bufferline {{{
+    " 
+    " vim-bufferline 
       let g:bufferline_echo = 0
       nnoremap <Leader>1 :1b<CR>
       nnoremap <Leader>2 :2b<CR>
@@ -513,10 +513,10 @@ augroup END
       nnoremap <Leader>8 :8b<CR>
       nnoremap <Leader>9 :9b<CR>
       nnoremap <Leader>0 :10b<CR>
-    " }}}
+    " 
 
-" }}}
-" Uncategorized {{{
+" 
+" Uncategorized 
 
   " Panic Button, haha.. 
   nnoremap <f9> mzggg?G`z
@@ -525,8 +525,8 @@ augroup END
   if filereadable($HOME . "/.vimrc.local")
     source ~/.vimrc.local
   endif
-" }}}
-" Trim whitespace on save {{{
+" 
+" Trim whitespace on save 
     function! <SID>StripTrailingWhitespaces()
       " Preparation: save last search, and cursor position.
       let _s=@/
@@ -540,5 +540,5 @@ augroup END
     endfunction
 
     autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
-" }}}
+" 
 

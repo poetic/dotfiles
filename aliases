@@ -76,6 +76,8 @@ alias gcl='git clone'
 alias gta='git tag -a -m'
 alias gf='git reflog'
 alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort -nr'
+# gituntrackdir directory_name
+alias gituntrackdir="git rm -r --cached "
 
 # -------------------------------------------------------------------
 # Don't correct these commands!

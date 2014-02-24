@@ -17,6 +17,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-haml'
 
 " Rails Testing
 Bundle 'tpope/vim-cucumber'
@@ -71,7 +72,6 @@ Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 
 Bundle 'bling/vim-airline'
-Bundle 'bling/vim-bufferline'
 
 
 if filereadable(expand("~/.vimrc.bundles.local"))
