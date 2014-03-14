@@ -342,6 +342,11 @@ augroup END
 
 " 
 " Plugins 
+    " CtrlP
+      set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+
+      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp)$'
+
     " NERDTree 
         map <C-e> :NERDTreeToggle<CR>
         let NERDTreeHighlightCursorline = 1
@@ -489,7 +494,8 @@ augroup END
     " 
     " Ack 
         nmap <leader>a :Ack
-        let g:ackprg = 'ag --nogroup --nocolor --column'
+        let g:ackprg = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+
     " 
     " Syntastic 
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-"] "]
@@ -498,19 +504,6 @@ augroup END
     " Mustache/Handlebars 
       let g:mustache_abbreviations = 1
     " 
-    " vim-bufferline 
-      let g:bufferline_echo = 0
-      nnoremap <Leader>1 :1b<CR>
-      nnoremap <Leader>2 :2b<CR>
-      nnoremap <Leader>3 :3b<CR>
-      nnoremap <Leader>4 :4b<CR>
-      nnoremap <Leader>5 :5b<CR>
-      nnoremap <Leader>6 :6b<CR>
-      nnoremap <Leader>7 :7b<CR>
-      nnoremap <Leader>8 :8b<CR>
-      nnoremap <Leader>9 :9b<CR>
-      nnoremap <Leader>0 :10b<CR>
-    " 
 
 " 
 " Uncategorized 
@@ -518,11 +511,6 @@ augroup END
   " Panic Button, haha..
   nnoremap <f9> mzggg?G`z
 
-  " Local config
-  if filereadable($HOME . "/.vimrc.local")
-    source ~/.vimrc.local
-  endif
-" 
 " Trim whitespace on save 
     function! <SID>StripTrailingWhitespaces()
       " Preparation: save last search, and cursor position.
@@ -537,5 +525,9 @@ augroup END
     endfunction
 
     autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
-" 
 
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
+" 
