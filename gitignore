@@ -9,3 +9,4 @@ tmp/**/*
 !tmp/cache/.keep
 zeus.json
 *.dump
+node_modules
