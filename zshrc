@@ -12,7 +12,7 @@ ZSH_THEME="jake"
 DISABLE_AUTO_UPDATE="true"
 
 DISABLE_AUTO_TITLE="true"
-plugins=(git bundler rails ruby brew bower rbenv rails4 vim gem zsh-syntax-highlighting)
+plugins=(git rails brew bower rails4 vim gem zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -28,6 +28,10 @@ bindkey -v
 bindkey "jj" vi-cmd-mode
 bindkey -M vicmd '/' history-incremental-search-backward
 
+#path+=('$HOME/bin')
+
+export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+
 # Boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
@@ -36,3 +40,4 @@ bindkey -M vicmd '/' history-incremental-search-backward
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+

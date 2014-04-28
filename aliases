@@ -96,6 +96,7 @@ alias gituntrackdir="git rm -r --cached "
 # -------------------------------------------------------------------
 alias spring='nocorrect spring'
 alias ag='nocorrect ag'
+alias rspec='nocorrect rspec'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers
