@@ -348,7 +348,7 @@ augroup END
     " CtrlP
       set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp)$'
+      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms)$'
 
     " NERDTree 
         map <C-e> :NERDTreeToggle<CR>
