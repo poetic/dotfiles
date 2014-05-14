@@ -501,7 +501,7 @@ augroup END
 
     " 
     " Syntastic 
-        let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-"] "]
+        let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
         let g:syntastic_quiet_messages = {'level': 'warnings'}
     " 
     " Mustache/Handlebars 
