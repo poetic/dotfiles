@@ -495,9 +495,8 @@ augroup END
               \   }
               \ }}
     " 
-    " Ack 
-        nmap <leader>a :Ack
-        let g:ackprg = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+    " Ag 
+        nmap <leader>a :Ag
 
     " 
     " Syntastic 

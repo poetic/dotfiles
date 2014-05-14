@@ -38,6 +38,7 @@ Bundle 'vim-scripts/xoria256.vim'
 Bundle 'dhruvasagar/vim-railscasts-theme'
 
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
