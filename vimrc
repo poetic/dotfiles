@@ -44,6 +44,9 @@
 
     " 
 " 
+  autocmd Syntax * normal zR
+  set foldlevelstart=20
+
 " General make life easy settings 
       let mapleader = ","
       set clipboard=unnamed      " Makes tmux c/p work
