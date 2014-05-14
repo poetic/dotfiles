@@ -12,7 +12,7 @@ ZSH_THEME="jake"
 DISABLE_AUTO_UPDATE="true"
 
 DISABLE_AUTO_TITLE="true"
-plugins=(git rails brew bower rails4 vim gem zsh-syntax-highlighting)
+plugins=(git rails brew bower bundle rails4 vim gem zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
