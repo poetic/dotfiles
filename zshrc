@@ -3,11 +3,12 @@ export EDITOR="vim"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.poetic_dotfiles/oh-my-zsh
+ZSH_CUSTOM=$HOME/.poetic_dotfiles/zsh_custom
 
 # Path to poetid dotfiles
 POETIC_DOTFILES=$HOME/.poetic_dotfiles
 
-ZSH_THEME="jake"
+ZSH_THEME="poetic"
 
 DISABLE_AUTO_UPDATE="true"
 
