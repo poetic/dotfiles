@@ -114,8 +114,11 @@
       "Bind jj to ESC for quicker switching modes
         inoremap jj <ESC>
 
-      " 0 now goes to first char in line instead of blank"
+      "0 now goes to first char in line instead of blank"
         nnoremap 0 0^
+
+      "Hit f2 to go into pastemode
+      :set pastetoggle=<F2>
 
 " 
 " Folding 
