@@ -1,4 +1,19 @@
 # -------------------------------------------------------------------
+# General
+# -------------------------------------------------------------------
+
+alias c='clear'
+
+# -------------------------------------------------------------------
+# Tmux
+# -------------------------------------------------------------------
+alias tma="tmux attach -t"
+alias tmn="tmux new -s"
+alias tml="tmux ls"
+alias tmo="tmuxinator open"
+alias tms="tmuxinator start"
+
+# -------------------------------------------------------------------
 # Ruby stuff
 # -------------------------------------------------------------------
 alias rake="noglob rake" # necessary to make rake work inside of zsh
@@ -19,20 +34,10 @@ alias hlogs='heroku logs --tail'
 # -------------------------------------------------------------------
 # directory movement
 # -------------------------------------------------------------------
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias 'bk=cd $OLDPWD'
-alias cd..='cd ..'
 alias ~='cd ~'
-
-# -------------------------------------------------------------------
-# directory information
-# -------------------------------------------------------------------
-alias lh='ls -d .*' # show hidden files/directories only
-alias l='ls -al'
-alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
-alias ll='ls -GFhl' # Same as above, but in long listing format
+alias dot='cd ~/Development/dotfiles/'
+alias work='cd ~/Work/'
+alias dev='cd ~/Development/'
 
 # -------------------------------------------------------------------
 # Mac only
@@ -51,18 +56,6 @@ alias 'pgrestore=pg_restore --verbose --clean --no-acl --no-owner -h localhost -
 
 # Start elasticsearch
 alias esstart='elasticsearch -f -D es.config=/opt/boxen/homebrew/opt/elasticsearch/config/elasticsearch.yml'
-
-alias c='clear'
-alias cwatch='compass watch'
-alias vol='cd /Volumes/'
-alias dot='cd ~/Development/dotfiles/'
-alias work='cd ~/Work/'
-alias dev='cd ~/Development/'
-alias tma="tmux attach -t"
-alias tmn="tmux new -s"
-alias tml="tmux ls"
-alias tmo="tmuxinator open"
-alias tms="tmuxinator start"
 
 # -------------------------------------------------------------------
 # Git

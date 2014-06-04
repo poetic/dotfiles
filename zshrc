@@ -12,7 +12,7 @@ ZSH_THEME="poetic"
 
 DISABLE_AUTO_TITLE="true"
 
-plugins=(git rails brew bower bundle rails vim gem zsh-syntax-highlighting)
+plugins=(git git-flow osx rails brew bower bundle gem rails vim gem meteor npm tmux tmuxinator common-aliases zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
