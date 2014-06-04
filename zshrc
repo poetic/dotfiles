@@ -1,3 +1,7 @@
+
+# Boxen
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
 # Set VIM as the default editor
 export EDITOR="vim"
 
@@ -31,9 +35,6 @@ bindkey -M vicmd '/' history-incremental-search-backward
 #path+=('$HOME/bin')
 
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
-
-# Boxen
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
