@@ -50,6 +50,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'spf13/PIV'
+Bundle 'groenewege/vim-less'
 
 " for snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
