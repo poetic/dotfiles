@@ -58,7 +58,7 @@ Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'ervandew/supertab'
 Bundle 'honza/vim-snippets'
-Bundle 'poetic/vim-snippets-poetic'
+Bundle 'poetic/vim-snippets'
 
 Bundle 'majutsushi/tagbar'
 Bundle 'Raimondi/delimitMate'
