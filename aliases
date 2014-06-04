@@ -34,6 +34,10 @@ alias hlogs='heroku logs --tail'
 # -------------------------------------------------------------------
 # directory movement
 # -------------------------------------------------------------------
+alias lh='ls -d .*' # show hidden files/directories only
+alias l='ls -al'
+alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
+alias ll='ls -GFhl' # Same as above, but in long listing format
 alias ~='cd ~'
 alias dot='cd ~/Development/dotfiles/'
 alias work='cd ~/Work/'
