@@ -10,9 +10,8 @@ POETIC_DOTFILES=$HOME/.poetic_dotfiles
 
 ZSH_THEME="poetic"
 
-DISABLE_AUTO_UPDATE="true"
-
 DISABLE_AUTO_TITLE="true"
+
 plugins=(git rails brew bower bundle rails vim gem zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
