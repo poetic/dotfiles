@@ -1,10 +1,7 @@
 Setup
 ==========
-+  symllink all the root files and folders here into your home directory.
-+  cd into this repos directory and run
-   +  `git submodule init`
-   +  `git submodule update`
-   to get powerline setup
++  run `git clone https://github.com/poetic/dotfiles.git ~/.poetic_dotfiles`
++ `~/.poetic_dotfiles/install`
 
 After that you will need to do whats listed in the "Vim Setup" section to have
 the vim plugins properly installed
@@ -12,10 +9,8 @@ the vim plugins properly installed
 Our boxen configuration does this for us so I don't have a script to do it for
 you right now.
 
-Vim Setup
+Vim Setup (optional)
 ==========
-
-Open vim or mvim and run :BundleInstall to install all plugins
 
 To get powerline working with the arrow-like fonts you will need to install
 a patched font from the powerline fonts repo on github. Then set up your

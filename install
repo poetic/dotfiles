@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ln -s ~/.poetic_dotfiles/vim ~/.vim
+ln -s ~/.poetic_dotfiles/vimrc ~/.vimrc
+ln -s ~/.poetic_dotfiles/vimrc.bundles ~/.vimrc.bundles
+ln -s ~/.poetic_dotfiles/zshrc ~/.zshrc
+ln -s ~/.poetic_dotfiles/rspec ~/.rspec
+ln -s ~/.poetic_dotfiles/gitignore ~/.gitignore
+ln -s ~/.poetic_dotfiles/aliases ~/.aliases
+ln -s ~/.poetic_dotfiles/ctags ~/.ctags
+ln -s ~/.poetic_dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/.poetic_dotfiles/tmuxinator ~/.tmuxinator
+ln -s ~/.poetic_dotfiles/tmuxinator.zsh ~/.tmuxinator.zsh
+
+cd ~/.poetic_dotfiles
+git submodule init
+git submodule update
+
+vim +PluginInstall +qall
+
