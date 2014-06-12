@@ -1,9 +1,11 @@
+# Set Vim as the default editor
+export EDITOR="vim"
+
+# Make sure SHELL is set properly
+export SHELL="/bin/zsh"
 
 # Boxen
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
-# Set VIM as the default editor
-export EDITOR="vim"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.poetic_dotfiles/oh-my-zsh
