@@ -18,7 +18,7 @@ ZSH_THEME="poetic"
 
 DISABLE_AUTO_TITLE="true"
 
-plugins=(git git-flow osx rails brew bower bundle gem rails vim gem meteor npm tmux tmuxinator autojump zsh-syntax-highlighting)
+plugins=(git git-flow osx rails brew bower bundle gem vim gem meteor npm tmux tmuxinator autojump zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,9 +34,8 @@ bindkey -v
 bindkey "jj" vi-cmd-mode
 bindkey -M vicmd '/' history-incremental-search-backward
 
-#path+=('$HOME/bin')
-
-export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+path+=($NODENV_ROOT)
+eval "$(nodenv init -)"
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
