@@ -19,6 +19,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-haml'
 
+Plugin 'digitaltoad/vim-jade'
+Plugin 'slim-template/vim-slim'
+
 " Rails Testing
 Plugin 'tpope/vim-cucumber'
 Plugin 'thoughtbot/vim-rspec'
@@ -36,6 +39,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'vim-scripts/xoria256.vim'
 Plugin 'dhruvasagar/vim-railscasts-theme'
+Plugin 'baskerville/bubblegum'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
@@ -73,6 +77,8 @@ Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 
 Plugin 'bling/vim-airline'
+
+Plugin 'sjl/gundo.vim'
 
 
 if filereadable(expand("~/.vimrc.bundles.local"))
