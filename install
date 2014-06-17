@@ -16,5 +16,6 @@ cd ~/.poetic_dotfiles
 git submodule init
 git submodule update
 
-vim +PluginInstall +qall
+# removed for now as it won't run proper in vagrant env
+#vim +PluginInstall +qall
 
