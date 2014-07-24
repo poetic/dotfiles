@@ -80,6 +80,8 @@ Plugin 'bling/vim-airline'
 
 Plugin 'sjl/gundo.vim'
 
+Plugin 'dockyard/vim-easydir'
+
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
