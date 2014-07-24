@@ -380,6 +380,174 @@ augroup END
       vmap <Leader>a> :Tabularize /=><CR>
       nmap <Leader>a\ :Tabularize /\|<CR>
       vmap <Leader>a\ :Tabularize /\|<CR>
+    " }}}
+    " Ag {{{
+      let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor"
+    " }}}
+    " TagBar 
+        nmap <leader>tt :TagbarToggle<CR>
+        let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
+        let g:tagbar_type_markdown = {
+          \ 'ctagstype' : 'markdown',
+          \ 'kinds' : [
+            \ 'h:Heading_L1',
+            \ 'i:Heading_L2',
+            \ 'k:Heading_L3'
+          \ ]
+        \ }
+
+        let g:tagbar_type_puppet = {
+            \ 'ctagstype': 'puppet',
+            \ 'kinds': [
+                \'c:class',
+                \'s:site',
+                \'n:node',
+                \'d:definition'
+              \]
+            \}
+
+        let g:tagbar_type_ruby = {
+            \ 'kinds' : [
+                \ 'm:modules',
+                \ 'c:classes',
+                \ 'd:describes',
+                \ 'C:contexts',
+                \ 'f:methods',
+                \ 'F:singleton methods'
+            \ ]
+        \ }
+
+        let g:tagbar_type_coffee = {
+            \ 'ctagstype' : 'coffee',
+            \ 'kinds'     : [
+                \ 'c:classes',
+                \ 'm:methods',
+                \ 'f:functions',
+                \ 'v:variables',
+                \ 'f:fields',
+            \ ]
+        \ }
+
+        " Posix regular expressions for matching interesting items. Since this will
+        " be passed as an environment variable, no whitespace can exist in the options
+        " so [:space:] is used instead of normal whitespaces.
+        " Adapted from: https://gist.github.com/2901844
+        let s:ctags_opts = '
+          \ --langdef=coffee
+          \ --langmap=coffee:.coffee
+          \ --regex-coffee=/(^|=[ \t])*class ([A-Za-z_][A-Za-z0-9_]+\.)*([A-Za-z_][A-Za-z0-9_]+)( extends ([A-Za-z][A-Za-z0-9_.]*)+)?$/\3/c,class/
+          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?(([A-Za-z][A-Za-z0-9_.]*)+):.*[-=]>.*$/\3/m,method/
+          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=.*[-=]>.*$/\3/f,function/
+          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/v,variable/
+          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/f,field/
+          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,static field/
+          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?/\3/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){1}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){2}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){3}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){4}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){5}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){6}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){7}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){8}/\8/f,field/
+          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
+
+        let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
+    " 
+    " Turbux 
+        " this line needed if not using zsh which auto does bundle exec
+        "let g:turbux_command_prefix = 'bundle exec'
+        let g:no_turbux_mappings = 1
+        map <leader>m <Plug>SendTestToTmux
+        map <leader>M <Plug>SendFocusedTestToTmux
+        let g:turbux_command_prefix = 'spring' " default: (empty)
+    " 
+    " Rails.vim 
+        " Add support for cucumber, activemodelserializers, and decorators
+        let g:rails_projections = {
+          \ "config/projections.json": {
+          \   "command": "projections"
+          \ },
+          \ "spec/features/*_spec.rb": {
+          \   "command": "feature",
+          \   "template": "require 'spec_helper'\n\nfeature '%h' do\n\nend",
+          \ }}
+
+        let g:rails_gem_projections = {
+              \ "active_model_serializers": {
+              \   "app/serializers/*_serializer.rb": {
+              \     "command": "serializer",
+              \     "affinity": "model",
+              \     "test": "spec/serializers/%s_spec.rb",
+              \     "related": "app/models/%s.rb",
+              \     "template": "class %SSerializer < ActiveModel::Serializer\nend"
+              \   }
+              \ },
+              \ "draper": {
+              \   "app/decorators/*_decorator.rb": {
+              \     "command": "decorator",
+              \     "affinity": "model",
+              \     "test": "spec/decorators/%s_spec.rb",
+              \     "related": "app/models/%s.rb",
+              \     "template": "class %SDecorator < Draper::Decorator\nend"
+              \   }
+              \ },
+              \ "factory_girl_rails": {
+              \   "spec/factories.rb": {
+              \     "command": "factories",
+              \     "template": "FactoryGirl.define do\nend"
+              \   }
+              \ }}
+    " 
+    " Ag 
+        nmap <leader>a :Ag
+
+    " 
+    " Syntastic 
+        let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
+        let g:syntastic_quiet_messages = {'level': 'warnings'}
+    " 
+    " Mustache/Handlebars 
+      let g:mustache_abbreviations = 1
+    " 
+
+" 
+" Uncategorized 
+
+  " Panic Button, haha..
+  nnoremap <f9> mzggg?G`z
+
+" Trim whitespace on save 
+    function! <SID>StripTrailingWhitespaces()
+      " Preparation: save last search, and cursor position.
+      let _s=@/
+      let l = line(".")
+      let c = col(".")
+      " Do the business:
+      %s/\s\+$//e
+      " Clean up: restore previous search history, and cursor position
+      let @/=_s
+      call cursor(l, c)
+    endfunction
+
+    autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
+
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
+" 
+    " Tabular {{{
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
+      nmap <Leader>a> :Tabularize /=><CR>
+      vmap <Leader>a> :Tabularize /=><CR>
+      nmap <Leader>a\ :Tabularize /\|<CR>
+      vmap <Leader>a\ :Tabularize /\|<CR>
     " 
     " TagBar 
         nmap <leader>tt :TagbarToggle<CR>
