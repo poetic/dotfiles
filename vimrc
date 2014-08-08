@@ -699,6 +699,37 @@ endif
 
     autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
 
+" Minify airline status bar
+  let g:airline_section_a = airline#section#create(['mode'])
+  let g:airline_section_y = airline#section#create(['%L'])
+  " preserve filename when possilbe even when the width of the current
+  " buffer is short
+  let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'z': 30 }
+  " remove less used functions, preservs:
+  " mode, file at left
+  " type, line count of file at right
+  " warning and color
+  let g:airline#extensions#default#layout = [
+    \ ['a', 'c'],
+    \ ['x', 'y', 'warning']
+    \ ]
+  " use initial to represent current mode
+  let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+" show current line number at the left of current line
+set number
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
