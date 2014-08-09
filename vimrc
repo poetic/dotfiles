@@ -702,9 +702,10 @@ endif
 " Minify airline status bar
   let g:airline_section_a = airline#section#create(['mode'])
   let g:airline_section_y = airline#section#create(['%L'])
+  let g:airline_section_y = airline#section#create(['%p', '%% of ', '%L'])
   " preserve filename when possilbe even when the width of the current
   " buffer is short
-  let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'z': 30 }
+  let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'y': 30 }
   " remove less used functions, preservs:
   " mode, file at left
   " type, line count of file at right
@@ -727,6 +728,9 @@ endif
     \ 'S'  : 'S',
     \ '' : 'S',
     \ }
+  " do not use deliminator
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
 " show current line number at the left of current line
 set number
 
