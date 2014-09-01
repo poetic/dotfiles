@@ -38,7 +38,7 @@ path+=($NODENV_ROOT)
 eval "$(nodenv init -)"
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.poetic_dotfiles/aliases ]] && source ~/.poetic_dotfiles/aliases
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
