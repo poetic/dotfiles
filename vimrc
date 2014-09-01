@@ -1,9 +1,8 @@
 "Jake Craige & Matthew Hager
 
 " Setup
-    "set rtp+=~/.poetic_dotfiles/powerline/powerline/bindings/vim/
-    if filereadable(expand("~/.vimrc.bundles"))
-      source ~/.vimrc.bundles
+    if filereadable(expand("~/.poetic_dotfiles/vimrc.bundles"))
+      source ~/.poetic_dotfiles/vimrc.bundles
     endif
 
     filetype plugin indent on
@@ -534,11 +533,6 @@ augroup END
 
     autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
-"
     " Tabular {{{
       nmap <Leader>a= :Tabularize /=<CR>
       vmap <Leader>a= :Tabularize /=<CR>
