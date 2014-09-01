@@ -1,16 +1,16 @@
 "Jake Craige & Matthew Hager
 
-" Setup
-    if filereadable(expand("~/.poetic_dotfiles/vimrc.bundles"))
-      source ~/.poetic_dotfiles/vimrc.bundles
-    endif
+" Setup {{{
+  if filereadable(expand("~/.poetic_dotfiles/vimrc.bundles"))
+    source ~/.poetic_dotfiles/vimrc.bundles
+  endif
 
-    filetype plugin indent on
-"
-" Language Specific
+  filetype plugin indent on
+" }}}
+" Language Specific {{{
     " keep you honest and without tabs
     autocmd BufWritePre * :retab
-    " Javascript
+    " Javascript {{{
         autocmd BufReadPre *.coffee let b:javascript_lib_use_angularjs = 1
 
         augroup ft_javascript
@@ -19,34 +19,29 @@
         augroup END
         " Compile coffee files automatically on sav - add | redraw! for terminal
           "au BufWritePost *.coffee silent make!
-    "
-    " Rails
+    " }}}
+    " Rails {{{
         map <Leader>rm :Rmodel<cr>
         map <Leader>rc :Rcontroller<cr>
         map <Leader>rv :Rview<cr>
-    "
-    " Ruby
+    " }}}
+    " Ruby {{{
         augroup ft_ruby
           au!
           au Filetype ruby setlocal foldmethod=syntax
         augroup END
-    "
-    " Vim
+    " }}}
+    " Vim {{{
+      augroup ft_vim
+          au!
 
-    augroup ft_vim
-        au!
-
-        au FileType vim setlocal foldmethod=marker
-        au FileType help setlocal textwidth=78
-        au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-    augroup END
-
-    "
-"
-  autocmd Syntax * normal zR
-  set foldlevelstart=20
-
-" General make life easy settings
+          au FileType vim setlocal foldmethod=marker
+          au FileType help setlocal textwidth=78
+          au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+      augroup END
+    " }}}
+" }}}
+" General make life easy settings {{{
       let mapleader = ","
       set clipboard=unnamed      " Makes tmux c/p work
       set noesckeys
@@ -67,6 +62,7 @@
       set ttyfast               " fast scrolling...
       set list
       set relativenumber
+      set number " show current line number at the left of current line
       set foldenable             " enable code folding
       set virtualedit=onemore    " Allow cursor beyondlast character
       set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -88,9 +84,8 @@
     " Disable Ex mode
       map Q <nop>
 
-
-"
-" Make Life Easy Bindings
+" }}}
+" Make Life Easy Bindings {{{
 
       " S in normal mode to split line, sister to J
       nnoremap S i<cr><esc><right>
@@ -119,8 +114,10 @@
       "Hit f2 to go into pastemode
       :set pastetoggle=<F2>
 
-"
-" Folding
+" }}}
+" Folding {{{
+    set foldlevelstart=20
+    autocmd Syntax * normal zR
 
     " Space to toggle folds.
     nnoremap <Space> za
@@ -147,8 +144,8 @@
     endfunction "
     set foldtext=MyFoldText()
 
-"
-" Colorscheme, Gui, Font
+" }}}
+" Colorscheme, Gui, Font {{{
 
     "Status line with fugitive git integration
     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -167,7 +164,7 @@
       colorscheme railscasts
     endif
 
-    " Font , Text, Tabs
+    " Font , Text, Tabs {{{
 
         " Auto format comment blocks
         set comments=sl:/*,mb:*,elx:*/
@@ -184,16 +181,16 @@
           set formatoptions=qrn1
           set colorcolumn=+1
 
-    "
+    " }}}
 
-"
-" Quick Edit Common Files
+" }}}
+" Quick Edit Common Files {{{
 
     nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc.local<cr>
     nnoremap <leader>ez <C-w><C-v><C-l>:e ~/.zshrc.local<cr>
 
-
-" File Editing
+" }}}
+" File Editing {{{
 
   " Edit another file in the same directory as the current file
   " uses expression to extract path from current file's path
@@ -214,21 +211,17 @@
   endfunction
   map <Leader>n :call RenameFile()<cr>
 
-" Line Return On File Open{{{
-
-" Make sure Vim returns to the same line when you reopen a file.
-" Thanks, Amit
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-
-"
-"
-" Navigation
+  " Make sure Vim returns to the same line when you reopen a file.
+  " Thanks, Amit
+  augroup line_return
+      au!
+      au BufReadPost *
+          \ if line("'\"") > 0 && line("'\"") <= line("$") |
+          \     execute 'normal! g`"zvzz' |
+          \ endif
+  augroup END
+" }}}
+" Navigation {{{
 
   " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
@@ -265,8 +258,8 @@ augroup END
         execute "set <xLeft>=\e[1;*D"
     endif
 
-"
-" Searching
+" }}}
+" Searching {{{
 
       "Fix broken searching by enabling regular regex I think?
       nnoremap / /\v
@@ -310,22 +303,21 @@ augroup END
       vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
       vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
-      "
-"
-" Git Setup
+" }}}
+" Git Setup {{{
 
     map <Leader>gac :Gcommit -m -a ""<LEFT>
     map <Leader>gc :Gcommit -m ""<LEFT>
     map <Leader>gs :Gstatus<CR>
     map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 
-"
-" duplicate selected content
+" }}}
+" duplicate selected content {{{
 
   map <Leader>d y'>p
 
-"
-" Backups
+" }}}
+" Backups {{{
 
   set backup                        " enable backups
   set noswapfile                    " it's 2013, Vim.
@@ -345,14 +337,14 @@ augroup END
       call mkdir(expand(&directory), "p")
   endif
 
-"
-" Plugins
-    " CtrlP
+" }}}
+" Plugins {{{
+    " CtrlP {{{
       set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
       let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms)$'
-
-    " NERDTree
+    " }}}
+    " NERDTree {{{
         map <C-e> :NERDTreeToggle<CR>
         let NERDTreeHighlightCursorline = 1
         let NERDTreeIgnore = ['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
@@ -365,6 +357,7 @@ augroup END
         let NERDChristmasTree = 1
         let NERDTreeChDirMode = 2
         let NERDTreeMapJumpFirstChild = 'gK'
+    " }}}
     " Sparkup {{{
 
       let g:sparkupExecuteMapping = '<leader>h'
@@ -383,7 +376,7 @@ augroup END
     " Ag {{{
       let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor"
     " }}}
-    " TagBar
+    " TagBar {{{
         nmap <leader>tt :TagbarToggle<CR>
         let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
         let g:tagbar_type_markdown = {
@@ -454,16 +447,16 @@ augroup END
           \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
 
         let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
-    "
-    " Turbux
+    " }}}
+    " Turbux {{{
         " this line needed if not using zsh which auto does bundle exec
         "let g:turbux_command_prefix = 'bundle exec'
         let g:no_turbux_mappings = 1
         map <leader>m <Plug>SendTestToTmux
         map <leader>M <Plug>SendFocusedTestToTmux
         let g:turbux_command_prefix = 'spring' " default: (empty)
-    "
-    " Rails.vim
+    " }}}
+    " Rails.vim {{{
         " Add support for cucumber, activemodelserializers, and decorators
         let g:rails_projections = {
           \ "config/projections.json": {
@@ -499,234 +492,74 @@ augroup END
               \     "template": "FactoryGirl.define do\nend"
               \   }
               \ }}
-    "
-    " Ag
+    " }}}
+    " Ag {{{
         nmap <leader>a :Ag
 
-    "
-    " Syntastic
+    " }}}
+    " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
         let g:syntastic_quiet_messages = {'level': 'warnings'}
-    "
-    " Mustache/Handlebars
+    " }}}
+    " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
-    "
+    " }}}
 
-"
-" Uncategorized
+" }}}
+" Uncategorized {{{
 
   " Panic Button, haha..
   nnoremap <f9> mzggg?G`z
 
-" Trim whitespace on save
-    function! <SID>StripTrailingWhitespaces()
-      " Preparation: save last search, and cursor position.
-      let _s=@/
-      let l = line(".")
-      let c = col(".")
-      " Do the business:
-      %s/\s\+$//e
-      " Clean up: restore previous search history, and cursor position
-      let @/=_s
-      call cursor(l, c)
-    endfunction
+  " Trim whitespace on save
+  function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+  endfunction
 
-    autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
+  autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
 
-    " Tabular {{{
-      nmap <Leader>a= :Tabularize /=<CR>
-      vmap <Leader>a= :Tabularize /=<CR>
-      nmap <Leader>a: :Tabularize /:\zs<CR>
-      vmap <Leader>a: :Tabularize /:\zs<CR>
-      nmap <Leader>a> :Tabularize /=><CR>
-      vmap <Leader>a> :Tabularize /=><CR>
-      nmap <Leader>a\ :Tabularize /\|<CR>
-      vmap <Leader>a\ :Tabularize /\|<CR>
-    "
-    " TagBar
-        nmap <leader>tt :TagbarToggle<CR>
-        let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
-        let g:tagbar_type_markdown = {
-          \ 'ctagstype' : 'markdown',
-          \ 'kinds' : [
-            \ 'h:Heading_L1',
-            \ 'i:Heading_L2',
-            \ 'k:Heading_L3'
-          \ ]
-        \ }
 
-        let g:tagbar_type_puppet = {
-            \ 'ctagstype': 'puppet',
-            \ 'kinds': [
-                \'c:class',
-                \'s:site',
-                \'n:node',
-                \'d:definition'
-              \]
-            \}
-
-        let g:tagbar_type_ruby = {
-            \ 'kinds' : [
-                \ 'm:modules',
-                \ 'c:classes',
-                \ 'd:describes',
-                \ 'C:contexts',
-                \ 'f:methods',
-                \ 'F:singleton methods'
-            \ ]
-        \ }
-
-        let g:tagbar_type_coffee = {
-            \ 'ctagstype' : 'coffee',
-            \ 'kinds'     : [
-                \ 'c:classes',
-                \ 'm:methods',
-                \ 'f:functions',
-                \ 'v:variables',
-                \ 'f:fields',
-            \ ]
-        \ }
-
-        " Posix regular expressions for matching interesting items. Since this will
-        " be passed as an environment variable, no whitespace can exist in the options
-        " so [:space:] is used instead of normal whitespaces.
-        " Adapted from: https://gist.github.com/2901844
-        let s:ctags_opts = '
-          \ --langdef=coffee
-          \ --langmap=coffee:.coffee
-          \ --regex-coffee=/(^|=[ \t])*class ([A-Za-z_][A-Za-z0-9_]+\.)*([A-Za-z_][A-Za-z0-9_]+)( extends ([A-Za-z][A-Za-z0-9_.]*)+)?$/\3/c,class/
-          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?(([A-Za-z][A-Za-z0-9_.]*)+):.*[-=]>.*$/\3/m,method/
-          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=.*[-=]>.*$/\3/f,function/
-          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/v,variable/
-          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/f,field/
-          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,static field/
-          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?/\3/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){1}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){2}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){3}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){4}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){5}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){6}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){7}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){8}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
-
-        let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
-    "
-    " Turbux
-        " this line needed if not using zsh which auto does bundle exec
-        "let g:turbux_command_prefix = 'bundle exec'
-        let g:no_turbux_mappings = 1
-        map <leader>m <Plug>SendTestToTmux
-        map <leader>M <Plug>SendFocusedTestToTmux
-        let g:turbux_command_prefix = 'spring' " default: (empty)
-    "
-    " Rails.vim
-        " Add support for cucumber, activemodelserializers, and decorators
-        let g:rails_projections = {
-          \ "config/projections.json": {
-          \   "command": "projections"
-          \ },
-          \ "spec/features/*_spec.rb": {
-          \   "command": "feature",
-          \   "template": "require 'spec_helper'\n\nfeature '%h' do\n\nend",
-          \ }}
-
-        let g:rails_gem_projections = {
-              \ "active_model_serializers": {
-              \   "app/serializers/*_serializer.rb": {
-              \     "command": "serializer",
-              \     "affinity": "model",
-              \     "test": "spec/serializers/%s_spec.rb",
-              \     "related": "app/models/%s.rb",
-              \     "template": "class %SSerializer < ActiveModel::Serializer\nend"
-              \   }
-              \ },
-              \ "draper": {
-              \   "app/decorators/*_decorator.rb": {
-              \     "command": "decorator",
-              \     "affinity": "model",
-              \     "test": "spec/decorators/%s_spec.rb",
-              \     "related": "app/models/%s.rb",
-              \     "template": "class %SDecorator < Draper::Decorator\nend"
-              \   }
-              \ },
-              \ "factory_girl_rails": {
-              \   "spec/factories.rb": {
-              \     "command": "factories",
-              \     "template": "FactoryGirl.define do\nend"
-              \   }
-              \ }}
-    "
-    " Ag
-        nmap <leader>a :Ag
-
-    "
-    " Syntastic
-        let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
-        let g:syntastic_quiet_messages = {'level': 'warnings'}
-    "
-    " Mustache/Handlebars
-      let g:mustache_abbreviations = 1
-    "
-
-"
-" Uncategorized
-
-  " Panic Button, haha..
-  nnoremap <f9> mzggg?G`z
-
-" Trim whitespace on save
-    function! <SID>StripTrailingWhitespaces()
-      " Preparation: save last search, and cursor position.
-      let _s=@/
-      let l = line(".")
-      let c = col(".")
-      " Do the business:
-      %s/\s\+$//e
-      " Clean up: restore previous search history, and cursor position
-      let @/=_s
-      call cursor(l, c)
-    endfunction
-
-    autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
-
-" Minify airline status bar
-  let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_y = airline#section#create(['%L'])
-  let g:airline_section_y = airline#section#create(['%p', '%% of ', '%L'])
-  " preserve filename when possilbe even when the width of the current
-  " buffer is short
-  let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'y': 30 }
-  " remove less used functions, preservs:
-  " mode, file at left
-  " type, line count of file at right
-  " warning and color
-  let g:airline#extensions#default#layout = [
-    \ ['a', 'c'],
-    \ ['x', 'y', 'warning']
-    \ ]
-  " use initial to represent current mode
-  let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V',
-    \ '' : 'V',
-    \ 's'  : 'S',
-    \ 'S'  : 'S',
-    \ '' : 'S',
-    \ }
-  " do not use deliminator
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
-" show current line number at the left of current line
-set number
+  " Minify airline status bar
+    let g:airline_section_a = airline#section#create(['mode'])
+    let g:airline_section_y = airline#section#create(['%L'])
+    let g:airline_section_y = airline#section#create(['%p', '%% of ', '%L'])
+    " preserve filename when possilbe even when the width of the current
+    " buffer is short
+    let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'y': 30 }
+    " remove less used functions, preservs:
+    " mode, file at left
+    " type, line count of file at right
+    " warning and color
+    let g:airline#extensions#default#layout = [
+      \ ['a', 'c'],
+      \ ['x', 'y', 'warning']
+      \ ]
+    " use initial to represent current mode
+    let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+    " do not use deliminator
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+" }}}
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
