@@ -11,14 +11,10 @@
     " keep you honest and without tabs
     autocmd BufWritePre * :retab
     " Javascript {{{
-        autocmd BufReadPre *.coffee let b:javascript_lib_use_angularjs = 1
-
         augroup ft_javascript
           au!
           au Filetype javascript setlocal foldmethod=syntax
         augroup END
-        " Compile coffee files automatically on sav - add | redraw! for terminal
-          "au BufWritePost *.coffee silent make!
     " }}}
     " Rails {{{
         map <Leader>rm :Rmodel<cr>
