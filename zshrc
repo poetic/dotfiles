@@ -18,7 +18,7 @@ ZSH_THEME="poetic"
 
 DISABLE_AUTO_TITLE="true"
 
-plugins=(git git-flow osx rails brew bower bundle gem vim gem meteor npm tmux tmuxinator autojump zsh-syntax-highlighting)
+plugins=(git git-flow osx rails brew bower bundle gem vim gem meteor npm tmux tmuxinator autojump zsh-syntax-highlighting last-working-dir jsontools)
 
 source $ZSH/oh-my-zsh.sh
 
