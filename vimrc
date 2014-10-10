@@ -370,7 +370,7 @@
       vmap <Leader>a\ :Tabularize /\|<CR>
     " }}}
     " Ag {{{
-      let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor"
+      let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
     " }}}
     " TagBar {{{
         nmap <leader>tt :TagbarToggle<CR>
