@@ -450,7 +450,7 @@
         let g:no_turbux_mappings = 1
         map <leader>m <Plug>SendTestToTmux
         map <leader>M <Plug>SendFocusedTestToTmux
-        let g:turbux_command_prefix = 'spring' " default: (empty)
+        let g:turbux_command_prefix = 'bundle exec spring' " default: (empty)
     " }}}
     " Rails.vim {{{
         " Add support for cucumber, activemodelserializers, and decorators
