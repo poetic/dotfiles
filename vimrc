@@ -146,8 +146,13 @@
     "Status line with fugitive git integration
     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+    "Setup solarized theme as default vim theme
+    let g:solarized_termtrans = 1
+    syntax enable
+    colorscheme solarized
+    set background=dark
+
     if has('gui_running')
-      colorscheme cobalt
       " removes scrollbar and toolbar"
       set guioptions+=lrb
       set guioptions-=lrb           " Remove the toolbar
@@ -156,8 +161,6 @@
     else
       set t_Co=256
       set term=screen-256color
-      set background=dark
-      colorscheme railscasts
     endif
 
     " Font , Text, Tabs {{{
