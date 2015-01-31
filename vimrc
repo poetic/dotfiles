@@ -1,10 +1,24 @@
 "Jake Craige & Matthew Hager
 
 " Setup {{{
+  set nocompatible
+  filetype off
+
+  " Plugins, managed with vim-plug (https://github.com/junegunn/vim-plug)
+  " Run `:PlugInstall` to install or update
+  call plug#begin('~/.vim/plugged')
+
   if filereadable(expand("~/.poetic_dotfiles/vimrc.bundles"))
     source ~/.poetic_dotfiles/vimrc.bundles
   endif
 
+  if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+  endif
+
+  call plug#end()
+
+  filetype on
   filetype plugin indent on
 " }}}
 " Language Specific {{{
@@ -15,11 +29,6 @@
           au!
           au Filetype javascript setlocal foldmethod=syntax
         augroup END
-    " }}}
-    " Rails {{{
-        map <Leader>rm :Rmodel<cr>
-        map <Leader>rc :Rcontroller<cr>
-        map <Leader>rv :Rview<cr>
     " }}}
     " Ruby {{{
         augroup ft_ruby
@@ -99,10 +108,8 @@
         nnoremap <leader>v V`]
 
       "Save a keystroke
-        nnoremap ; :
 
       "Bind jj to ESC for quicker switching modes
-        inoremap jj <ESC>
 
       "0 now goes to first char in line instead of blank"
         nnoremap 0 0^
@@ -191,8 +198,6 @@
   " Edit another file in the same directory as the current file
   " uses expression to extract path from current file's path
     map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-    map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
-    map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
     map <leader><tab> :Scratch<CR>
 
   " RENAME CURRENT FILE (thanks Gary Bernhardt)
@@ -266,10 +271,10 @@
       set hlsearch
 
       " highlighted in visual mode, any in normal
-      nnoremap <leader>s :%s//gc<left><left><left>
-      nnoremap <leader>sa :%s//g<left><left>
-      vnoremap <leader>s "hy:%s/<C-r>h//gc<left><left><left>
-      vnoremap <leader>sa "hy:%s/<C-r>h//g<left><left>
+      " nnoremap <leader>s :%s//gc<left><left><left>
+      " nnoremap <leader>sa :%s//g<left><left>
+      " vnoremap <leader>s "hy:%s/<C-r>h//gc<left><left><left>
+      " vnoremap <leader>sa "hy:%s/<C-r>h//g<left><left>
 
       "Undo highlignted searches
       nnoremap <leader><space> :noh<cr>
@@ -338,7 +343,7 @@
     " CtrlP {{{
       set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms)$'
+      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms|bower_components|cassettes)$'
     " }}}
     " NERDTree {{{
         map <C-e> :NERDTreeToggle<CR>
@@ -373,125 +378,7 @@
       let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
     " }}}
     " TagBar {{{
-        nmap <leader>tt :TagbarToggle<CR>
         let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
-        let g:tagbar_type_markdown = {
-          \ 'ctagstype' : 'markdown',
-          \ 'kinds' : [
-            \ 'h:Heading_L1',
-            \ 'i:Heading_L2',
-            \ 'k:Heading_L3'
-          \ ]
-        \ }
-
-        let g:tagbar_type_puppet = {
-            \ 'ctagstype': 'puppet',
-            \ 'kinds': [
-                \'c:class',
-                \'s:site',
-                \'n:node',
-                \'d:definition'
-              \]
-            \}
-
-        let g:tagbar_type_ruby = {
-            \ 'kinds' : [
-                \ 'm:modules',
-                \ 'c:classes',
-                \ 'd:describes',
-                \ 'C:contexts',
-                \ 'f:methods',
-                \ 'F:singleton methods'
-            \ ]
-        \ }
-
-        let g:tagbar_type_coffee = {
-            \ 'ctagstype' : 'coffee',
-            \ 'kinds'     : [
-                \ 'c:classes',
-                \ 'm:methods',
-                \ 'f:functions',
-                \ 'v:variables',
-                \ 'f:fields',
-            \ ]
-        \ }
-
-        " Posix regular expressions for matching interesting items. Since this will
-        " be passed as an environment variable, no whitespace can exist in the options
-        " so [:space:] is used instead of normal whitespaces.
-        " Adapted from: https://gist.github.com/2901844
-        let s:ctags_opts = '
-          \ --langdef=coffee
-          \ --langmap=coffee:.coffee
-          \ --regex-coffee=/(^|=[ \t])*class ([A-Za-z_][A-Za-z0-9_]+\.)*([A-Za-z_][A-Za-z0-9_]+)( extends ([A-Za-z][A-Za-z0-9_.]*)+)?$/\3/c,class/
-          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?(([A-Za-z][A-Za-z0-9_.]*)+):.*[-=]>.*$/\3/m,method/
-          \ --regex-coffee=/^[ \t]*(module\.)?(exports\.)?(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=.*[-=]>.*$/\3/f,function/
-          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/v,variable/
-          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/f,field/
-          \ --regex-coffee=/^[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,static field/
-          \ --regex-coffee=/^[ \t]*(([A-Za-z][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?/\3/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){1}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){2}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){3}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){4}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){5}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){6}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){7}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){8}/\8/f,field/
-          \ --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){9}/\8/f,field/'
-
-        let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
-    " }}}
-    " Turbux {{{
-        " this line needed if not using zsh which auto does bundle exec
-        "let g:turbux_command_prefix = 'bundle exec'
-        let g:no_turbux_mappings = 1
-        map <leader>m <Plug>SendTestToTmux
-        map <leader>M <Plug>SendFocusedTestToTmux
-        let g:turbux_command_prefix = 'bundle exec spring' " default: (empty)
-    " }}}
-    " Rails.vim {{{
-        " Add support for cucumber, activemodelserializers, and decorators
-        let g:rails_projections = {
-          \ "config/projections.json": {
-          \   "command": "projections"
-          \ },
-          \ "spec/features/*_spec.rb": {
-          \   "command": "feature",
-          \   "template": "require 'spec_helper'\n\nfeature '%h' do\n\nend",
-          \ }}
-
-        let g:rails_gem_projections = {
-              \ "active_model_serializers": {
-              \   "app/serializers/*_serializer.rb": {
-              \     "command": "serializer",
-              \     "affinity": "model",
-              \     "test": "spec/serializers/%s_spec.rb",
-              \     "related": "app/models/%s.rb",
-              \     "template": "class %SSerializer < ActiveModel::Serializer\nend"
-              \   }
-              \ },
-              \ "draper": {
-              \   "app/decorators/*_decorator.rb": {
-              \     "command": "decorator",
-              \     "affinity": "model",
-              \     "test": "spec/decorators/%s_spec.rb",
-              \     "related": "app/models/%s.rb",
-              \     "template": "class %SDecorator < Draper::Decorator\nend"
-              \   }
-              \ },
-              \ "factory_girl_rails": {
-              \   "spec/factories.rb": {
-              \     "command": "factories",
-              \     "template": "FactoryGirl.define do\nend"
-              \   }
-              \ }}
-    " }}}
-    " Ag {{{
-        nmap <leader>a :Ag
-
     " }}}
     " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
@@ -499,6 +386,13 @@
     " }}}
     " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
+    " }}}
+    " vim-rspec {{{
+      map <Leader>t :call RunCurrentSpecFile()<CR>
+      map <Leader>s :call RunNearestSpec()<CR>
+      map <Leader>l :call RunLastSpec()<CR>
+      map <Leader>a :call RunAllSpecs()<CR>  
+      let g:rspec_command = "Dispatch rspec {spec}"
     " }}}
 
 " }}}
@@ -521,40 +415,6 @@
   endfunction
 
   autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
-
-
-  " Minify airline status bar
-    let g:airline_section_a = airline#section#create(['mode'])
-    let g:airline_section_y = airline#section#create(['%L'])
-    let g:airline_section_y = airline#section#create(['%p', '%% of ', '%L'])
-    " preserve filename when possilbe even when the width of the current
-    " buffer is short
-    let g:airline#extensions#default#section_truncate_width = { 'x': 30, 'y': 30 }
-    " remove less used functions, preservs:
-    " mode, file at left
-    " type, line count of file at right
-    " warning and color
-    let g:airline#extensions#default#layout = [
-      \ ['a', 'c'],
-      \ ['x', 'y', 'warning']
-      \ ]
-    " use initial to represent current mode
-    let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-    " do not use deliminator
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
 " }}}
 
 " Local config

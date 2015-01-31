@@ -1,94 +1,75 @@
-set nocompatible
-filetype off
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
 
-set rtp+=~/.poetic_dotfiles/vim/bundle/Vundle.vim/
-call vundle#begin()
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
 
-" let Vundle manage Vundle
-" required! 
-Plugin 'gmarik/Vundle.vim'
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
 
-" tpope yay!:
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-haml'
+Plug 'tpope/vim-cucumber'
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'digitaltoad/vim-jade'
-Plugin 'slim-template/vim-slim'
+Plug 'junegunn/seoul256.vim'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'baskerville/bubblegum'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dhruvasagar/vim-railscasts-theme'
 
-" Rails Testing
-Plugin 'tpope/vim-cucumber'
-Plugin 'thoughtbot/vim-rspec'
-
-" Tmux Rails Testing
-Plugin 'jgdavey/vim-turbux'
-Plugin 'benmills/vimux'
-
-Plugin 'christoomey/vim-tmux-navigator'
-
-Plugin 'junegunn/seoul256.vim'
-Plugin 'jakecraige/vim-colors'
-Plugin 'thingsinjars/Cobalt.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'sjl/badwolf'
-Plugin 'vim-scripts/xoria256.vim'
-Plugin 'dhruvasagar/vim-railscasts-theme'
-Plugin 'baskerville/bubblegum'
-
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'kien/ctrlp.vim'
-Plugin 'godlygeek/tabular'
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'kien/ctrlp.vim'
+Plug 'godlygeek/tabular'
 " webapi required for gists
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'spf13/PIV'
-Plugin 'groenewege/vim-less'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'spf13/PIV', { 'for': 'php' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
 
 " for snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'ervandew/supertab'
-Plugin 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
 
-Plugin 'majutsushi/tagbar'
-Plugin 'Raimondi/delimitMate'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'duff/vim-scratch'
-Plugin 'rodjek/vim-puppet'
-Plugin 'mustache/vim-mode'
+Plug 'majutsushi/tagbar'
+Plug 'Raimondi/delimitMate'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'duff/vim-scratch'
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'mustache/vim-mode', { 'for': 'handlebars' }
 
 " Dash
-Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/dash.vim'
+Plug 'rizzatti/funcoo.vim'
+Plug 'rizzatti/dash.vim'
 
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
+Plug 'sjl/gundo.vim'
+Plug 'dockyard/vim-easydir'
+Plug 'editorconfig/editorconfig-vim'
 
-Plugin 'sjl/gundo.vim'
-
-Plugin 'dockyard/vim-easydir'
-
-Plugin 'editorconfig/editorconfig-vim'
-
-
-if filereadable(expand("~/.vimrc.bundles.local"))
-  source ~/.vimrc.bundles.local
-endif
-
-call vundle#end()
-
-filetype on
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'amdt/vim-niji', { 'for': 'clojure' } " rainbow parentheses
