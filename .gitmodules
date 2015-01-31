@@ -1,18 +1,12 @@
-[submodule "vim/bundle/vundle"]
-	path = vim/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
 [submodule "powerline"]
-	path = powerline
-	url = https://github.com/Lokaltog/powerline.git
+  path = powerline
+  url = https://github.com/Lokaltog/powerline.git
 [submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+  path = oh-my-zsh
+  url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
-	path = zsh_custom/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "vim/bundle/Vundle.vim"]
-	path = vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
+  path = zsh_custom/plugins/zsh-syntax-highlighting
+  url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
+  path = tmux/plugins/tpm
+  url = https://github.com/tmux-plugins/tpm
